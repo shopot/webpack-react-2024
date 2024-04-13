@@ -1,0 +1,205 @@
+{
+  "root": true,
+  "plugins": ["import", "@typescript-eslint", "react-hooks", "jsx-a11y"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-type-checked",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:jsx-a11y/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module",
+    "project": ["./tsconfig.json"]
+  },
+  "env": {
+    "browser": true,
+    "es2022": true
+  },
+  "rules": {
+    // https://eslint.org/docs/latest/rules/curly
+    "curly": ["error", "all"],
+    // https://eslint.org/docs/latest/rules/padding-line-between-statements
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
+      { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"] },
+      { "blankLine": "always", "prev": "*", "next": "return" }
+    ],
+    // https://eslint.org/docs/latest/rules/no-multiple-empty-lines
+    "no-multiple-empty-lines": ["error"],
+    // https://eslint.org/docs/latest/rules/arrow-body-style
+    "arrow-body-style": ["error", "as-needed"],
+    // https://eslint.org/docs/latest/rules/prefer-arrow-callback
+    "prefer-arrow-callback": "off",
+    // https://eslint.org/docs/latest/rules/no-console
+    "no-console": ["error", { "allow": ["warn", "info", "error"] }],
+    // https://eslint.org/docs/latest/rules/no-underscore-dangle
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allow": ["_id", "__typename", "__schema", "__dirname", "_global"],
+        "allowAfterThis": true
+      }
+    ],
+    // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/first.md
+    "import/first": "error",
+    // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/newline-after-import.md
+    "import/newline-after-import": "error",
+    // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-duplicates.md
+    "import/no-duplicates": "error",
+    // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/prefer-default-export.md
+    "import/prefer-default-export": "off",
+    // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-anonymous-default-export.md
+    "import/no-anonymous-default-export": [
+      "error",
+      {
+        "allowArray": false,
+        "allowArrowFunction": false,
+        "allowAnonymousClass": false,
+        "allowAnonymousFunction": false,
+        "allowCallExpression": true,
+        "allowLiteral": false,
+        "allowObject": true
+      }
+    ],
+    // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-unassigned-import.md
+    "import/no-unassigned-import": "off",
+    // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-unused-modules.md
+    "import/no-unused-modules": "error",
+    // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/prop-types.md
+    "import/order": [
+      "error",
+      {
+        "pathGroups": [
+          { "pattern": "react", "group": "builtin" },
+          { "pattern": "react-dom/**", "group": "builtin" },
+          { "pattern": "components/**", "group": "internal" },
+          { "pattern": "config/**", "group": "internal" },
+          { "pattern": "features/**", "group": "internal" },
+          { "pattern": "hooks/**", "group": "internal" },
+          { "pattern": "lib/**", "group": "internal" },
+          { "pattern": "providers/**", "group": "internal" },
+          { "pattern": "routes/**", "group": "internal" },
+          { "pattern": "stores/**", "group": "internal" },
+          { "pattern": "utils/**", "group": "internal" },
+          { "pattern": "app/**", "group": "internal" },
+          {
+            "pattern": "*.(css|sass|less|scss|pcss|styl)",
+            "group": "index",
+            "patternOptions": { "matchBase": true },
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/*/*/**",
+              "config/*/**",
+              "features/*/**",
+              "hooks/*/**",
+              "lib/*/**",
+              "providers/**",
+              "routes/*/**",
+              "stores/*/**",
+              "utils/*/**",
+              "app/*/**"
+            ],
+            "message": "Direct access to the internal parts of the module is prohibited"
+          },
+          {
+            "group": [
+              "../**/components",
+              "../**/config",
+              "../**/features",
+              "../**/hooks",
+              "../**/lib",
+              "../**/providers",
+              "../**/routes",
+              "../**/stores",
+              "../**/utils",
+              "../**/app"
+            ],
+            "message": "Prefer absolute imports instead of relatives"
+          }
+        ]
+      }
+    ],
+    "import/default": "off",
+    "import/no-named-as-default-member": "off",
+    "import/no-named-as-default": "off",
+
+    "react/prop-types": "off",
+    // https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/README.md
+    "react-hooks/exhaustive-deps": [2],
+    // https://typescript-eslint.io/rules/no-use-before-define/
+    "@typescript-eslint/no-use-before-define": "error",
+    // https://typescript-eslint.io/rules/no-unused-vars/
+    "@typescript-eslint/no-unused-vars": "error",
+    // https://typescript-eslint.io/rules/no-explicit-any/
+    "@typescript-eslint/no-explicit-any": "error",
+    // https://typescript-eslint.io/rules/naming-convention/
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "interface",
+        "format": ["PascalCase"],
+        "custom": {
+          "regex": "[A-Za-z]Interface$",
+          "match": true
+        }
+      },
+      {
+        "selector": "typeAlias",
+        "format": ["PascalCase"],
+        "custom": {
+          "regex": "[A-Za-z](Type|Props)$",
+          "match": true
+        }
+      }
+    ],
+    // https://typescript-eslint.io/rules/ban-types/
+    "@typescript-eslint/ban-types": [
+      "error",
+      {
+        "types": {
+          // un-ban a type that's banned by default
+          "{}": false
+        },
+        "extendDefaults": true
+      }
+    ],
+    "@typescript-eslint/explicit-member-accessibility": [
+      "error",
+      {
+        "accessibility": "explicit",
+        "overrides": {
+          "constructors": "off"
+        }
+      }
+    ],
+    "@typescript-eslint/array-type": ["error", { "default": "array" }],
+    "@typescript-eslint/explicit-function-return-type": "error"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": true
+    }
+  }
+}

@@ -1,0 +1,15 @@
+---
+services:
+  webpack-react-2024:
+    container_name: webpack-react-2024
+    ports:
+      - ${UI_PORT}:3001
+    image: webpack-react-2024:${IMAGE_SUFFIX}
+    environment:
+      NGINX_ENVSUBST_OUTPUT_DIR: /etc/nginx
+      API_SERVICE_URL: ${API_SERVICE_URL}
+    restart: always
+    volumes:
+      - ${NGINX_CONFIG_TEMPALTE}:/etc/nginx/templates/nginx.conf.template
+
+version: '3'

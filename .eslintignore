@@ -1,0 +1,9 @@
+.husky/*
+public
+build
+node_modules
+.history
+**/*.js
+**/*.json
+**/*.sh
+**/*.bash

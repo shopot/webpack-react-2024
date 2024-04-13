@@ -1,0 +1,55 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitAny": true,
+    "allowSyntheticDefaultImports": true,
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+    "target": "es6",
+    "outDir": "build",
+    "jsx": "react-jsx",
+    "paths": {
+      "app": ["./src/app"],
+      "app/*": ["./src/app/*"],
+
+      "assets": ["./src/assets"],
+      "assets/*": ["./src/assets/*"],
+
+      "components": ["./src/components"],
+      "components/*": ["./src/components/*"],
+
+      "config": ["./src/config"],
+      "config/*": ["./src/config/*"],
+
+      "features": ["./src/features"],
+      "features/*": ["./src/features/*"],
+
+      "hooks": ["./src/hooks"],
+      "hooks/*": ["./src/hooks/*"],
+
+      "lib": ["./src/lib"],
+      "lib/*": ["./src/lib/*"],
+
+      "providers": ["./src/providers"],
+      "providers/*": ["./src/providers/*"],
+
+      "routes": ["./src/routes"],
+      "routes/*": ["./src/routes/*"],
+
+      "stores": ["./src/stores"],
+      "stores/*": ["./src/stores/*"],
+
+      "test": ["./src/test"],
+      "test/*": ["./src/test/*"],
+
+      "types": ["./src/types"],
+      "types/*": ["./src/types/*"],
+
+      "utils": ["./src/utils"],
+      "utils/*": ["./src/utils/*"]
+    }
+  },
+  "files": ["src/index.tsx"],
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
