@@ -16,4 +16,4 @@ echo "Build image: $PROJECT_NAME:${IMAGE_SUFFIX}"
 docker build -t $PROJECT_NAME:"${IMAGE_SUFFIX}" -f ./Dockerfile .
 
 # Working only with Linux
-# docker save "gwebpack-react-2024":20240401_001 | gzip > gridid-verification-light-front_20240401_001.tar.gz
+# docker save "webpack-react-2024":20240401_001 | gzip > webpack-react-2024_20240401_001.tar.gz
