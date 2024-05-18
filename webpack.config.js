@@ -2,7 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { default: merge } = require('webpack-merge');
+
+const createAliases = require('./__webpack__/webpack.alias');
 
 const rootDirectory = path.join(__dirname);
 const srcDirectory = path.join(rootDirectory, 'src');
@@ -10,12 +12,6 @@ const publicDirectory = path.join(rootDirectory, 'public');
 const templateHtmlFile = path.join(srcDirectory, 'index.html'); // path to index.html
 
 const isDev = process.env.NODE_ENV === 'development';
-
-const createAliases = require('./__webpack__/webpack.alias');
-
-const { default: merge } = require('webpack-merge');
-
-const stylesHandler = isDev ? 'style-loader' : MiniCssExtractPlugin.loader;
 
 const config = {
   entry: path.join(srcDirectory, 'index.tsx'),
@@ -85,27 +81,23 @@ const config = {
         },
       },
       {
-        test: /\.(css|scss)$/,
+        // For pure CSS - /\.css$/i,
+        // For Sass/SCSS - /\.((c|sa|sc)ss)$/i,
+        // For Less - /\.((c|le)ss)$/i,
+        test: /\.((c|sa|sc)ss)$/i,
         use: [
-          stylesHandler,
+          'style-loader',
+          { loader: 'css-loader', options: { importLoaders: 1 } },
           {
-            loader: 'css-loader',
+            loader: 'postcss-loader',
             options: {
-              importLoaders: 1,
-              esModule: false,
-              modules: {
-                localIdentName: isDev ? '[name]-[local]-[hash:base64:8]' : '[hash:base64]',
+              postcssOptions: {
+                plugins: [['postcss-preset-env']],
               },
             },
           },
           'sass-loader',
         ],
-        include: /\.module\.(css|scss)$/,
-      },
-      {
-        test: /\.(css|scss)$/,
-        use: [stylesHandler, 'css-loader', 'sass-loader'],
-        exclude: /\.module\.(css|scss)$/,
       },
       {
         test: /\.(png|svg|jpg|jpeg|webp|gif)$/i,

@@ -5,7 +5,7 @@ if [ ! -f .env ];then
     exit
 fi
 
-export $(cat .env | xargs)
+export $(grep -v '^#' .env | xargs)
 
 PROJECT_NAME="${PROJECT_NAME%%[[:cntrl:]]}"
 

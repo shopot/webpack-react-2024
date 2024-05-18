@@ -5,7 +5,7 @@ if [ ! -f .env ];then
     exit
 fi
 
-export $(cat .env | xargs)
+export $(grep -v '^#' .env | xargs)
 
 IMAGE_SUFFIX="${IMAGE_SUFFIX%%[[:cntrl:]]}"
 
